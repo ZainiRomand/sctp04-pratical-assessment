@@ -1,4 +1,6 @@
-{{#extend}}
+{{#extends "base"}}
+
+
 {{#block "content"}}
 <h1>Employees</h1>
 
@@ -8,17 +10,22 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Department</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        {{#each employees}}
+        {{#each allEmployees}}
         <tr>
             <td>{{this.first_name}}</td>
             <td>{{this.last_name}}</td>
             <td>{{this.name}}</td>
+            <td><a href="/employees/{{employee_id}}/edit">Edit</a></td>
+            <td><a href="/employees/{{employee_id}}/delete" style="color: crimson;">Delete</a></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 {{/block}}
-{{/extend}}
+
+{{/extends}}

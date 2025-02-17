@@ -1,24 +1,26 @@
 {{#extends "base"}}
 {{#block "content"}}
-<h1>Create a new employee</h1>
+<h1>Edit Employee</h1>
 <form method="POST">
     <div class="mb-3">
         <label>First Name</label>
-        <input type="text" class="form-control" name="first_name" />
+        <input type="text" class="form-control" name="first_name" value="{{employee.first_name}}">
     </div>
     <div class="mb-3">
         <label>Last Name</label>
-        <input type="text" class="form-control" name="last_name" />
+        <input type="text" class="form-control" name="last_name" value="{{employee.last_name}}">
     </div>
     <div class="mb-3">
         <label>Department</label>
         <select name="department_id" class="form-control">
             {{#each departments}}
-            <option value="{{department_id}}">{{name}}</option>
+            <option value="{{this.department_id}}" {{#eq this.department_id ../employees.department_id}}selected{{/eq}}>
+                {{this.name}}
+            </option>
             {{/each}}
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Add Employee</button>
+    <button type="submit" class="btn btn-primary">Update Employee</button>
     <a href="/employees" class="btn btn-primary">Cancel</a>
 </form>
 {{/block}}

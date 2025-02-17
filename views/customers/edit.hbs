@@ -18,10 +18,9 @@
         <label>Companies</label>
         <select name="company_id" class="form-control">
             {{#each companies}}
-                <option value="{{this.company_id}}" 
-                {{#eq this.company_id ../customer.company_id}}selected{{/eq}}>
-                    {{this.name}}
-                </option>
+            <option value="{{this.company_id}}" {{#eq this.company_id ../customer.company_id}}selected{{/eq}}>
+                {{this.name}}
+            </option>
             {{/each}}
         </select>
     </div>
