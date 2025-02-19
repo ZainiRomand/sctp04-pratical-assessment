@@ -59,14 +59,41 @@ async function main() {
 
         // Use array destructuring to extract out the first element of the
         // results array into the customers array
-        const [customers] = await connection.execute(`
+        const firstName = req.query.first_name;
+        const lastName = req.query.last_name;
+        const ratings = req.query.ratings;
+
+
+        let sql =`
             SELECT * FROM Customers
-            JOIN Companies
-            ON Customers.company_id = Companies.company_id;
-        `);
+                JOIN Companies
+            ON Customers.company_id = Companies.company_id WHERE 1
+        `
+        const bindings = [];
+
+        // if the firstName variable is given a truthify value
+        // (in other words, not null, not undefined, not '', not 0, not false)
+        if (firstName) {
+            sql += " AND first_name LIKE ?";
+            bindings.push('%' + firstName + '%')
+        }
+
+        if (lastName) {
+            sql += " AND last_name LIKE ?";
+            bindings.push('%' + lastName + '%')
+        }
+
+        if (ratings) {
+            sql += " AND rating >= ?";
+            bindings.push(ratings)
+        }
+
+
+        const [customers] = await connection.execute(sql, bindings);
 
         res.render('customers', {
-            'allCustomers': customers
+            'allCustomers': customers,
+            'searchParams': req.query
         })
     });
 

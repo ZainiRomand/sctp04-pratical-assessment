@@ -1,33 +1,33 @@
 {{#extends "base"}}
 
+
 {{#block "content"}}
-<h1>Customers</h1>
+<h1>Employees</h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Rating</th>
-            <th>Company Name</th>
+            <th>Department</th>
             <th></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        {{#each allCustomers}}
+        {{#each allEmployees}}
         <tr>
             <td>{{this.first_name}}</td>
             <td>{{this.last_name}}</td>
-            <td>{{this.rating}}</td>
             <td>{{this.name}}</td>
-            <td><a href="/customers/{{customer_id}}/edit">Edit</a></td>
-            <td><a href="/customers/{{customer_id}}/delete" style="color: crimson;">Delete</a></td>
+            <td><a href="/employees/{{employee_id}}/edit">Edit</a></td>
+            <td><a href="/employees/{{employee_id}}/delete" style="color: crimson;">Delete</a></td>
         </tr>
         {{/each}}
+
     </tbody>
 </table>
-
+<a class="btn btn-primary" href="/employees/create" role="button">Add new employee</a>
 {{/block}}
 
 {{/extends}}
