@@ -61,7 +61,7 @@ async function main() {
         // results array into the customers array
         const firstName = req.query.first_name;
         const lastName = req.query.last_name;
-        const ratings = req.query.ratings;
+        const rating = req.query.rating;
 
 
         let sql =`
@@ -83,9 +83,9 @@ async function main() {
             bindings.push('%' + lastName + '%')
         }
 
-        if (ratings) {
+        if (rating) {
             sql += " AND rating >= ?";
-            bindings.push(ratings)
+            bindings.push(rating)
         }
 
 
@@ -165,14 +165,39 @@ async function main() {
     })
 
     app.get('/employees', async function (req, res) {
-        const [employees] = await connection.execute(`
+        //const [employees] = await connection.execute(`
+        //    SELECT * FROM Employees
+        //    JOIN Departments 
+        //    ON Employees.department_id = Departments.department_id
+        //`);
+
+        const firstName = req.query.first_name;
+        const lastName = req.query.last_name;
+
+        let sql =`
             SELECT * FROM Employees
-            JOIN Departments 
-            ON Employees.department_id = Departments.department_id
-        `);
+                JOIN Departments
+            ON Employees.department_id = Departments.department_id WHERE 1
+        `
+        const bindings = [];
+
+        // if the firstName variable is given a truthify value
+        // (in other words, not null, not undefined, not '', not 0, not false)
+        if (firstName) {
+            sql += " AND first_name LIKE ?";
+            bindings.push('%' + firstName + '%')
+        }
+
+        if (lastName) {
+            sql += " AND last_name LIKE ?";
+            bindings.push('%' + lastName + '%')
+        }
+
+        const [employees] = await connection.execute(sql, bindings);
 
         res.render('employees', {
-            'allEmployees': employees
+            'allEmployees': employees,
+            'searchParams': req.query
         })
     });
 

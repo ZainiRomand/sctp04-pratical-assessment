@@ -2,12 +2,37 @@
 
 {{#block "content"}}
 <h1>Customers</h1>
-<div class="input-group mb-3">
-    <span class="input-group-text" id="inputGroup-sizing-default" name="firstName">Search by First Name</span>
-    <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default">
-        <a class="btn btn-primary" href="/customers" role="button">Search</a>
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                SEARCH CUSTOMER
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form method="GET">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" value="{{searchParams.first_name}}" id="firstName" name="first_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" value="{{searchParams.last_name}}" id="lastName" name="last_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <input type="text" class="form-control" value="{{searchParams.rating}}" id="rating" name="rating">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
 <table class="table">
     <thead>
         <tr>
