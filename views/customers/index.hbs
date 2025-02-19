@@ -16,15 +16,18 @@
                 <form method="GET">
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" value="{{searchParams.first_name}}" id="firstName" name="first_name">
+                        <input type="text" class="form-control" value="{{searchParams.first_name}}" id="firstName"
+                            name="first_name">
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" value="{{searchParams.last_name}}" id="lastName" name="last_name">
+                        <input type="text" class="form-control" value="{{searchParams.last_name}}" id="lastName"
+                            name="last_name">
                     </div>
                     <div class="mb-3">
                         <label for="rating" class="form-label">Rating</label>
-                        <input type="text" class="form-control" value="{{searchParams.rating}}" id="rating" name="rating">
+                        <input type="text" class="form-control" value="{{searchParams.rating}}" id="rating"
+                            name="rating">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -51,8 +54,10 @@
             <td>{{this.last_name}}</td>
             <td>{{this.rating}}</td>
             <td>{{this.name}}</td>
-            <td><a href="/customers/{{customer_id}}/edit">Edit</a></td>
-            <td><a href="/customers/{{customer_id}}/delete" style="color: crimson;">Delete</a></td>
+            <td><a href="/customers/{{customer_id}}/edit" class="btn btn-sm btn-primary" role="button"
+                    style="width: 100px">Edit</a></td>
+            <td><a href="/customers/{{customer_id}}/delete" class="btn btn-sm btn-danger" role="button"
+                    style="width: 100px">Delete</a></td>
         </tr>
         {{/each}}
     </tbody>
